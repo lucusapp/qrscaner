@@ -1,11 +1,31 @@
-<ion-header [translucent]="true">
+<ion-header no-border>
   <ion-toolbar>
     <ion-title>
       Historial
      </ion-title>
+     <ion-buttons>
+       <ion-button slot="end"
+                    (click)="enviarcorreo()"
+                   color = "primary">
+        <ionicon name="send" slot="icon-only"></ionicon>
+
+       </ion-button>
+
+     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content>
+  <ion-list>
+    <ion-item detail>
+      <ion-icon slot="start" name="globe"></ion-icon>
+      <ion-label>
+        <h2>https://</h2>
+        <p>2020-10-05</p>
+      
+      </ion-label>
+    </ion-item>
+
+  </ion-list>
  
 </ion-content>

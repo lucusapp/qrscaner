@@ -9,4 +9,10 @@ export class Tab2Page {
 
   constructor() {}
 
+
+
+  enviarcorreo(){
+    console.log("enviando correo ...")
+  }
+
 }
