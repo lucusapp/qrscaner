@@ -9,7 +9,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 export class Tab1Page {
 
   swiperOpts ={
-    allowSlidePrev:false;
+    allowSlidePrev:false,
     allowSlideNext: false
   }
 
