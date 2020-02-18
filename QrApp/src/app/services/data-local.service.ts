@@ -3,7 +3,7 @@ import { Registro } from '../models/resgistro.model';
 import { Storage } from '@ionic/storage';
 import { NavController } from '@ionic/angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+
 
 
 @Injectable({
@@ -52,6 +52,9 @@ export class DataLocalService {
         //abrir el navegador web 
         this.inAppBrowser.create(registro.text, '_system');
       break;
+      case 'geo':
+        //abrir el navegador web 
+        this.navCtrl.navigateForward(`/tabs/tab2/mapa/${registro.text}`);      break;
 
     }
 
