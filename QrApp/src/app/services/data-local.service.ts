@@ -49,7 +49,9 @@ export class DataLocalService {
     this.navCtrl.navigateForward('/tabs/tab2');
     switch(registro.type){
       case 'http':
-        this.inAppBrowser.create(registro.text, '_system')
+        //abrir el navegador web 
+        this.inAppBrowser.create(registro.text, '_system');
+      break;
 
     }
 

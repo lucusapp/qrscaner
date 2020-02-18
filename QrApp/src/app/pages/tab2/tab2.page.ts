@@ -19,8 +19,8 @@ export class Tab2Page {
   //161.Abrir URL en el navegador por defecto del dispositivo
   abrirRegistro(registro:Registro){
     
-    console.log("abriendo registro")
-    this.dataLocal.abrirRegistro(registro)
+    console.log("Registro", registro)
+    this.dataLocal.abrirRegistro(registro);
   }
 
 }
