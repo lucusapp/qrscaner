@@ -9,18 +9,25 @@ import { Registro } from 'src/app/models/resgistro.model';
 })
 export class Tab2Page {
 
-  constructor(public dataLocal:DataLocalService) {}
-
-
-
-  enviarcorreo(){
-    console.log("enviando correo ...")
+  constructor(public dataLocal:DataLocalService) {
   }
-  //161.Abrir URL en el navegador por defecto del dispositivo
-  abrirRegistro(registro:Registro){
+
     
-    console.log("Registro", registro)
-    this.dataLocal.abrirRegistro(registro);
-  }
+    
+    enviarcorreo(){
+      console.log("enviando correo ...")
+      this.dataLocal.enviarCorreo
+      
+}
+//161.Abrir URL en el navegador por defecto del dispositivo
+abrirRegistro(registro:Registro){
+  
+  console.log("Registro", registro)
+  this.dataLocal.abrirRegistro(registro);
+}
+
+
 
 }
+
+

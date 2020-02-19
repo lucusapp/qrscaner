@@ -3,6 +3,8 @@ import { Registro } from '../models/resgistro.model';
 import { Storage } from '@ionic/storage';
 import { NavController } from '@ionic/angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { File } from '@ionic-native/file/ngx';
+
 
 
 
@@ -16,7 +18,8 @@ export class DataLocalService {
 
   constructor(private storage: Storage,
               private navCtrl:NavController,
-              private inAppBrowser:InAppBrowser) {
+              private inAppBrowser:InAppBrowser,
+              private file:File) {
     //160 GUARDAR INFORMACION DE LOS REGISTROS DEL STORAGE
     // this.storage.get('registros')
     //     .then(registros=>{
@@ -59,4 +62,38 @@ export class DataLocalService {
     }
 
   }
+
+  enviarCorreo(){
+    const arrTemp = []
+    const titulos = "Tipo,Formato,Creado en,Texto\n";
+
+    arrTemp.push(titulos);
+    this.guardados.forEach(registro =>{
+    
+      const linea = `${registro.type}, ${registro.format},
+      ${registro.created},${registro.text.replace(',',' ')}\n`
+    
+    arrTemp.push(linea)
+  
+  })
+console.log(arrTemp.join(''))
+this.crearArchivoFisico(arrTemp.join(''))
+
+  }
+crearArchivoFisico(text:string){
+  this.file.checkFile(this.file.dataDirectory, 'registros.csv')
+      .then (existe=>{
+        return this.escribirEnArchivo(text)
+      })
+      .catch(err=>{
+        return this.file.createFile(this.file.dataDirectory, 'registros.csv', false )
+                    .then (creado=> this.escribirEnArchivo(text))
+                    .catch(err2=> console.log('no se puedo crerar',err))
+      }) ;
+}
+
+async escribirEnArchivo(text:string){
+  await this.file.writeExistingFile(this.file.dataDirectory,'registros.csv',text);
+
+}
 }
