@@ -4,7 +4,7 @@ import { Storage } from '@ionic/storage';
 import { NavController } from '@ionic/angular';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { File } from '@ionic-native/file/ngx';
-
+import { EmailComposer } from '@ionic-native/email-composer/ngx';
 
 
 
@@ -19,7 +19,8 @@ export class DataLocalService {
   constructor(private storage: Storage,
               private navCtrl:NavController,
               private inAppBrowser:InAppBrowser,
-              private file:File) {
+              private file:File,
+              private emailcomponser:EmailComposer) {
     //160 GUARDAR INFORMACION DE LOS REGISTROS DEL STORAGE
     // this.storage.get('registros')
     //     .then(registros=>{
@@ -95,5 +96,21 @@ crearArchivoFisico(text:string){
 async escribirEnArchivo(text:string){
   await this.file.writeExistingFile(this.file.dataDirectory,'registros.csv',text);
 
+
+  const archivo = `${this.file.dataDirectory}/registros.csv`;
+  console.log(this.file.dataDirectory + 'registros.csv')
+  const email = {
+    to: 'lucusapp@gmail.com',
+    // cc: 'erika@mustermann.de',
+    // bcc: ['john@doe.com', 'jane@doe.com'],
+    attachments: [
+      archivo
+    ],
+    subject: 'Backup de scans',
+    body: 'Aqui tienen sus backups de los scans - <strong>ScanApp</strong>',
+    isHtml: true
+  };
+  this.emailcomponser.open(email);
 }
+  
 }
