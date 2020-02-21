@@ -29,7 +29,7 @@ export class Tab1Page {
     }).catch(err => {
       console.log('Error', err);
       
-      this.dataLocal.guardarRegistro("QrCode","https//google.es")
+      this.dataLocal.guardarRegistro("QrCode","geo:70.73151796986687,-74.06087294062502")
 
 
    }); 
